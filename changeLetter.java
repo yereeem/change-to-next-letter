@@ -2,8 +2,8 @@
 class changeLetter{
     public static void main(String[] args){
         // check that there is exactly one command line input.
-        if (args.length != 1){
-            System.out.println("Usage: java changeLetter <\"word\">");
+        if (args.length != 1 || containsPunctuationOrNumbers(args[0]) || args[0].equals(" ")){
+            System.out.println("Usage: java changeLetter <\"word\"> (without puncutation)");
             return;
         }
 
@@ -44,5 +44,12 @@ class changeLetter{
 
         // Print the shifted word to console.
         System.out.println(newString);
+    }
+
+    // Function to check if the string contains any punctuation
+    public static boolean containsPunctuationOrNumbers(String word) {
+        // Regular expression to match any punctuation
+        String punctuationRegex = ".*[\\p{Punct}\\d].*";
+        return word.matches(punctuationRegex);
     }
 }
