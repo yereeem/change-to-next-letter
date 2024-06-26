@@ -1,10 +1,3 @@
-// Example test cases:
-/* 
-move("hello") ➞ "ifmmp"
-move("bye") ➞ "czf"
-move("welcome") ➞ "xfmdpnf"
- */
-
 
 class changeLetter{
     public static void main(String[] args){
@@ -13,5 +6,43 @@ class changeLetter{
             System.out.println("Usage: java changeLetter <\"word\">");
             return;
         }
+
+        // get the string from the command line argument.
+        String word = args[0];
+
+        // call the move function with the input word.
+        move(word);
+    }
+    
+    // method to shift each ascii code for each character in the word by 1. 
+    public static void move(String word){
+        // initialise a string to hold the final transformed word.
+        String newString = "";
+        
+        // for each character in the word,
+        for (int i = 0; i <= word.length() - 1; i++){
+            char currentChar = word.charAt(i); // get the character at index i,
+            int nextAsciiCode; // initialise a variable to get the next ascii code.
+            char nextChar; // initailise a variable to get the next character (using the ascii code).
+    
+            // if the character at index i is not lowercase 'z',
+            if (currentChar != 'z'){
+                // increment the ascii code by 1, and convert it to a character.
+                nextAsciiCode = currentChar + 1;
+                nextChar = (char)nextAsciiCode;
+            }
+            // else if the character at index i is a lowercase 'z',
+            else{
+                // set the next character as uppercase 'A'.
+                nextChar = 'A';
+            }
+            
+            // append the incremented character to the new string.
+            newString = newString + nextChar;
+            // System.out.println(currentChar + " " + nextChar); // DEBUG
+        }
+
+        // Print the shifted word to console.
+        System.out.println(newString);
     }
 }
